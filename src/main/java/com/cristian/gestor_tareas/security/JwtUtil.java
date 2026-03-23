@@ -2,10 +2,11 @@ package com.cristian.gestor_tareas.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.security.Key; import java.util.Date;
+import java.util.Date;
 
 @Component
 public class JwtUtil {
@@ -36,7 +37,7 @@ public class JwtUtil {
                 .getSubject();
     }
 
-    public boolean validateToken(String token) {
+    public boolean validateToken(String token, UserDetails userDetails) {
         try {
             Jwts.parserBuilder()
                     .setSigningKey(getSigningKey())
