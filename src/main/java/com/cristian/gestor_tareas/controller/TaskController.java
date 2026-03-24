@@ -40,6 +40,13 @@ public class TaskController {
         return ResponseEntity.ok(saved);
     }
 
+    //Actualizar tareas
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
+        task.setId(id);
+        return ResponseEntity.ok(taskService.updateTask(task));
+    }
+
     //Borrar tareas
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTask(@PathVariable Long id,  HttpServletRequest request) {
