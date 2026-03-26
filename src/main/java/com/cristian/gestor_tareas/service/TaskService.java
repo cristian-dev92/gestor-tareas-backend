@@ -23,9 +23,17 @@ public class TaskService {
 
     public Task createTask(Task task, User user) {
         task.setUser(user);
+
         if (task.getStatus() == null) {
             task.setStatus("PENDING");
         }
+
+        if (task.getPriority() == null) {
+            task.setPriority("MEDIUM");
+        }
+
+        task.setCreatedAt(java.time.LocalDateTime.now()); //Añadimos la fecha de creación
+
         return taskRepository.save(task);
     }
 
