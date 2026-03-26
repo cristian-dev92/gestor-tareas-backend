@@ -64,4 +64,27 @@ public class TaskController {
         taskService.deleteTask(id);
         return ResponseEntity.ok("Task deleted");
     }
+
+    //Modificar estado
+    @PutMapping("/{id}/toggle")
+    public ResponseEntity<Task> toggleStatus(@PathVariable Long id, HttpServletRequest request) {
+
+        String username = request.getUserPrincipal().getName();
+        User user = userService.findByUsername(username);
+
+        Task task = taskService.getTaskById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
+        if (!task.getUser().getId().equals(user.getId())) {
+            return ResponseEntity.status(403).build();
+        }
+
+        if ("PENDING".equals(task.getStatus())) {
+            task.setStatus("DONE");
+        } else {
+            task.setStatus("PENDING");
+        }
+
+        return ResponseEntity.ok(taskService.updateTask(task));
+    }
 }
