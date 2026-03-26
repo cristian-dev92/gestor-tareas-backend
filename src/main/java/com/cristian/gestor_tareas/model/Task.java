@@ -3,6 +3,7 @@ package com.cristian.gestor_tareas.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -22,7 +23,11 @@ public class Task {
     @Column(nullable = false)
     private String status; // PENDING, IN_PROGRESS, DONE
 
+    @Column(nullable = false)
+    private String priority = "MEDIUM"; // ALTA, MEDIA, BAJA
+
     private LocalDate deadline;
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
