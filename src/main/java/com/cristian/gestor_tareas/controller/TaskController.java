@@ -1,5 +1,6 @@
 package com.cristian.gestor_tareas.controller;
 
+import com.cristian.gestor_tareas.dto.TaskOrderUpdateDTO;
 import com.cristian.gestor_tareas.model.Subtask;
 import com.cristian.gestor_tareas.model.Task;
 import com.cristian.gestor_tareas.model.User;
@@ -119,5 +120,12 @@ public class TaskController {
     @DeleteMapping("/subtasks/{id}")
     public void deleteSubtask(@PathVariable Long id) {
         subtaskRepository.deleteById(id);
+    }
+
+    //Reordenar tareas
+    @PostMapping("/reorder")
+    public ResponseEntity<Void> reorderTasks(@RequestBody List<TaskOrderUpdateDTO> updates) {
+        taskService.reorderTasks(updates);
+        return ResponseEntity.ok().build();
     }
 }
