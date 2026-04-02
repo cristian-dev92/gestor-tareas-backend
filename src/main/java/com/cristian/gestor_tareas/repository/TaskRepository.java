@@ -8,6 +8,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findByUserId(Long userId);
 
+    List<Task> findByUserIdOrderByOrderIndexAsc(Long userId);
+
     List<Task> findByStatus(String status);
 
+    List<Task> findAllByOrderByStatusAscOrderIndexAsc();
 }
