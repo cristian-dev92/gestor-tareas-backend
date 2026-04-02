@@ -26,6 +26,8 @@ public class Task {
     @Column(nullable = false)
     private String status; // PENDING, IN_PROGRESS, DONE
 
+    private Integer orderIndex; // Para mantener el orden de las tareas
+
     @Column(nullable = false)
     private String priority = "MEDIUM"; // ALTA, MEDIA, BAJA
 
