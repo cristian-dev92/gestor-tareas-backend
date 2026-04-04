@@ -7,9 +7,9 @@ Incluye registro, login, seguridad, CRUD de tareas y endpoint `/auth/me` para ob
 
 ## 🚀 Tecnologías utilizadas
 
-- Java 17
-- Spring Boot 3
-- Spring Security 7
+- Java 21
+- Spring Boot 
+- Spring Security 
 - JWT (JSON Web Token)
 - JPA / Hibernate
 - PostgreSQL
@@ -79,23 +79,12 @@ Flujo:
   src/main/java/com/cristian/gestor_tareas
   │
   ├── controller
+  ├── dto
   ├── model
   ├── repository
   ├── security
   ├── service
   └── GestorTareasApplication.java
-
- 🛠️ Próximos pasos
-
-  Crear frontend en Angular
-  
-  Conectar login y registro
-
-  Guardar token en localStorage
-
-  Mostrar tareas del usuario autenticado
-
-  CRUD completo desde la interfaz
 
 👤 Autor
 
