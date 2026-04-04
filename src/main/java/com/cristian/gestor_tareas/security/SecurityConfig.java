@@ -36,12 +36,15 @@ public class SecurityConfig {
             var corsConfig = new org.springframework.web.cors.CorsConfiguration();
             corsConfig.setAllowedOrigins(java.util.List.of("http://localhost:4200"));
             corsConfig.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+            corsConfig.setAllowedHeaders(java.util.List.of("Authorization","Content-Type"));
+            corsConfig.setAllowedHeaders(java.util.List.of("Authorization"));
             corsConfig.setAllowedHeaders(java.util.List.of("*"));
             corsConfig.setAllowCredentials(true);
             return corsConfig;
         }));
 
         http.authorizeHttpRequests(auth -> auth
+                .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll() // ⭐ PERMITIR OPTIONS
                 .requestMatchers("/auth/login").permitAll()
                 .requestMatchers("/auth/register").permitAll()
                 .anyRequest().authenticated()
