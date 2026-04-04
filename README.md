@@ -78,12 +78,19 @@ Flujo:
 
   src/main/java/com/cristian/gestor_tareas
   │
+  
   ├── controller
+  
   ├── dto
+  
   ├── model
+  
   ├── repository
+  
   ├── security
+  
   ├── service
+  
   └── GestorTareasApplication.java
 
 👤 Autor
