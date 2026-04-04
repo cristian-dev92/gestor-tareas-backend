@@ -45,6 +45,14 @@ public class UserService {
 
     }
 
+    public User save(User user) {
+        // Si la contraseña NO está encriptada, la encriptamos
+        if (user.getPassword() != null && !user.getPassword().startsWith("$2a$")) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        return userRepository.save(user);
+    }
+
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
