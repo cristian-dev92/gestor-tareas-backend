@@ -95,6 +95,6 @@ Flujo:
 
 👤 Autor
 
- Cristian Alhambra  
+ Cristian Alhambra — Full Stack Developer
  Proyecto backend con Spring Boot + JWT. Proyecto libre.
 
