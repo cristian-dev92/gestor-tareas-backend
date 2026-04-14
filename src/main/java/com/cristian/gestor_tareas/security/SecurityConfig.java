@@ -1,5 +1,6 @@
 package com.cristian.gestor_tareas.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,11 +11,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.Arrays;
+
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
+
+    @Value("${CORS_ALLOWED_ORIGINS}")
+    private String corsAllowedOrigins;
 
     public SecurityConfig(JwtFilter jwtFilter) {
 
@@ -34,7 +41,7 @@ public class SecurityConfig {
 
         .cors(cors -> cors.configurationSource(request -> {
             var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-            corsConfig.setAllowedOrigins(java.util.List.of("http://localhost:4200"));
+            corsConfig.setAllowedOrigins(Arrays.asList(corsAllowedOrigins.split(",")));
             corsConfig.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
             corsConfig.setAllowedHeaders(java.util.List.of("Authorization","Content-Type"));
             corsConfig.setAllowedHeaders(java.util.List.of("Authorization"));
