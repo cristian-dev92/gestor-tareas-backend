@@ -24,13 +24,11 @@ public class SecurityConfig {
     private String corsAllowedOrigins;
 
     public SecurityConfig(JwtFilter jwtFilter) {
-
         this.jwtFilter = jwtFilter;
     }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 
@@ -41,11 +39,13 @@ public class SecurityConfig {
 
         .cors(cors -> cors.configurationSource(request -> {
             var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-            corsConfig.setAllowedOrigins(Arrays.asList(corsAllowedOrigins.split(",")));
+
+            // CORS_ALLOWED_ORIGINS es una variable de entorno que contiene los orígenes permitidos separados por comas
+            corsConfig.setAllowedOriginPatterns(Arrays.asList(corsAllowedOrigins.split(",")));
+
             corsConfig.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-            corsConfig.setAllowedHeaders(java.util.List.of("Authorization","Content-Type"));
-            corsConfig.setAllowedHeaders(java.util.List.of("Authorization"));
             corsConfig.setAllowedHeaders(java.util.List.of("*"));
+            corsConfig.setExposedHeaders(java.util.List.of("Authorization"));
             corsConfig.setAllowCredentials(true);
             return corsConfig;
         }));
