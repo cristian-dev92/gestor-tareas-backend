@@ -1,101 +1,93 @@
 # Gestor de Tareas – Backend (Spring Boot + JWT)
 
-Backend desarrollado en **Spring Boot** para gestionar usuarios y tareas con autenticación mediante **JWT**.  
-Incluye registro, login, seguridad, CRUD de tareas y endpoint `/auth/me` para obtener el usuario autenticado.
+Backend robusto desarrollado con **Java 21** y **Spring Boot** para la gestión de tareas.  
+Implementa una arquitectura de seguridad basada en **JWT** (JSON Web Tokens) y persistencia en **PostgreSQL**.
 
 ---
 
-## 🚀 Tecnologías utilizadas
+## 🚀 Stack Tecnológico
 
-- Java 21
-- Spring Boot 
-- Spring Security 
-- JWT (JSON Web Token)
-- JPA / Hibernate
-- PostgreSQL
-- Maven
+* **Lenguaje:** Java 21
+* **Framework:** Spring Boot 3.x
+* **Seguridad:** Spring Security & JWT
+* **Persistencia:** Spring Data JPA + Hibernate
+* **Base de Datos:** PostgreSQL
+* **Gestión de Dependencias:** Maven
 
 ---
 
-## 📦 Requisitos
+## 🔐 Seguridad y Autenticación
 
-- Java 17+
-- Maven
-- PostgreSQL
-- IntelliJ IDEA (opcional cualquier IDE)
+El sistema utiliza un flujo de autenticación stateless mediante JWT:
+
+1.  **Registro:** El usuario se crea en `/auth/register`.
+2.  **Login:** El usuario se autentica en `/auth/login` y recibe un Bearer Token.
+3.  **Protección:** Las rutas de tareas requieren el header: `Authorization: Bearer <TOKEN_AQUÍ>`
+4.  **Sesión:** Endpoint `/auth/me` para validar y recuperar el perfil del usuario actual.
 
 ---
 
 ## ⚙️ Configuración
 
-Editar `src/main/resources/application.properties`:
+Antes de ejecutar, asegúrate de configurar tu base de datos en `src/main/resources/application.properties`:
 
 ```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/gestor_tareas
-spring.datasource.username=postgres
-spring.datasource.password=TU_PASSWORD
+spring.datasource.url=${DB_URL}
+spring.datasource.username=${DB_USER}
+spring.datasource.password=${DB_PASSWORD}
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+jwt.secret=${JWT_SECRET}
+cors.allowed-origins=${CORS_ALLOWED_ORIGINS}
 ```
 
-▶️ Ejecutar el proyecto
+📚 Documentación de la API
 
-mvn spring-boot:run
+🔸 Autenticación
 
-El backend se inicia en: http://localhost:8080
+| Método |    Endpoint    |              Descripción               |
+| :---: |:--------------:|:--------------------------------------:| 
+| POST | /auth/register |       Registrar un nuevo usuario       |
+| POST |  /auth/login   |    Login y obtención del Token JWT     |
+| GET |     /tasks     | Obtener perfil del usuario autenticado |
 
-🔐 Autenticación JWT
+ 🔸 Gestión de Tareas
 
-El backend usa JWT para proteger rutas.
-
-Flujo:
-
-   1.Registrar usuario → /auth/register
-
-   2.Login → /auth/login → devuelve token
-
-   3.Enviar token en cada petición protegida: 
-   Authorization: Bearer TU_TOKEN
-
-   4.Obtener usuario autenticado → /auth/me
-
-📚 Endpoints principales
-
- 🔸 Autenticación
-  Método	Endpoint	Descripción
-  POST	/auth/register	Registrar usuario
-  POST	/auth/login	Iniciar sesión y obtener token
-  GET	/auth/me	Obtener usuario autenticado
-
- 🔸 Tareas
-  Método	Endpoint	Descripción
-  GET	/tasks/user/{id}	Obtener tareas del usuario
-  POST	/tasks/create/{id}	Crear tarea para un usuario
-  PUT	/tasks/update/{id}	Actualizar tarea
-  DELETE	/tasks/delete/{id}	Eliminar tarea
+| Método |       Endpoint       |                Descripción                |
+|:------:|:--------------------:|:-----------------------------------------:| 
+|  GET   |  /tasks/user/{id}	   |   Lista todas las tareas de un usuario    |   
+|  POST  | /tasks/create/{id}   | 	Crea una nueva tarea asignada al usuario | 
+|  PUT	  | /tasks/update/{id}	  |  Actualiza datos de una tarea existente   | 
+| DELETE | /tasks/delete/{id}	  |   Elimina una tarea de forma permanente   |
 
 📁 Estructura del proyecto
 
   src/main/java/com/cristian/gestor_tareas
   │
+
+  ├—— controller # (Capa de Exposición): Contiene los controladores REST. Define los puntos de entrada (endpoints) y gestiona las peticiones HTTP.
+
+  ├—— dto # (Data Transfer Objects): Objetos utilizados para enviar y recibir datos desde la API, evitando exponer directamente las entidades de la base de datos y mejorando la seguridad.
   
-  ├── controller
+  ├—— model # (Capa de Datos): Contiene las entidades JPA que representan las tablas de la base de datos (Usuario, Tarea).
   
-  ├── dto
+  ├—— repository # (Capa de Persistencia): Interfaces que extienden de `JpaRepository`. Se encargan de realizar las consultas a la base de datos PostgreSQL.
   
-  ├── model
+  ├—— security # (Capa de Seguridad): Configuración de Spring Security, filtros de JWT y lógica de cifrado de contraseñas.
   
-  ├── repository
-  
-  ├── security
-  
-  ├── service
+  ├—— service # (Capa de Negocio): Aquí reside la lógica principal. Gestiona las validaciones, el procesamiento de datos y la comunicación entre controladores y repositorios.
   
   └── GestorTareasApplication.java
 
+▶️ Ejecución
+
+Clona el proyecto y ejecuta el siguiente comando en la raíz:
+
+mvn spring-boot:run
+
+La API estará disponible en: http://localhost:8080
+
 👤 Autor
 
- Cristian Alhambra — Full Stack Developer
- 
- Proyecto backend con Spring Boot + JWT. Proyecto libre.
+ Cristian Alhambra - Full Stack Developer
 
