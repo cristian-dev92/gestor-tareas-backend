@@ -3,6 +3,14 @@
 Backend robusto desarrollado con **Java 21** y **Spring Boot** para la gestión de tareas.  
 Implementa una arquitectura de seguridad basada en **JWT** (JSON Web Tokens) y persistencia en **PostgreSQL**.
 
+## 🌐 Demo pública
+
+Backend desplegado en Render (puede tardar 40–60 segundos en la primera carga por cold start).
+
+Frontend desplegado en Vercel.
+
+https://gestor-tareas-frontend-eight.vercel.app/
+
 ---
 
 ## 🚀 Stack Tecnológico
@@ -63,7 +71,6 @@ cors.allowed-origins=${CORS_ALLOWED_ORIGINS}
 📁 Estructura del proyecto
 
   src/main/java/com/cristian/gestor_tareas
-  │
 
   ├—— controller # (Capa de Exposición): Contiene los controladores REST. Define los puntos de entrada (endpoints) y gestiona las peticiones HTTP.
 
