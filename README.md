@@ -94,6 +94,12 @@ mvn spring-boot:run
 
 La API estará disponible en: http://localhost:8080
 
+## 🗄️ Persistencia de Datos
+El proyecto utiliza **Neon** como proveedor de base de datos PostgreSQL.
+* **Modelo Serverless:** Permite un escalado eficiente y una respuesta rápida.
+* **Conexión Segura:** Implementada mediante `sslmode=require`.
+* **Esquema:** Los datos se organizan en el esquema `gestor_tareas` (o `public` según configuración).
+
 👤 Autor
 
  Cristian Alhambra - Full Stack Developer
