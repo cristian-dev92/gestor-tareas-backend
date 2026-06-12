@@ -1,0 +1,7 @@
+com.cristian.gestor_tareas
+com.cristian.gestor_tareas.controller
+com.cristian.gestor_tareas.dto
+com.cristian.gestor_tareas.model
+com.cristian.gestor_tareas.repository
+com.cristian.gestor_tareas.security
+com.cristian.gestor_tareas.service
