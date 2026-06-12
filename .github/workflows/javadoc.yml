@@ -28,5 +28,5 @@ jobs:
       - name: 🚀 Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: target/site/apidocs # Carpeta donde Maven guarda el Javadoc por defecto
+          folder: target/reports/apidocs # Carpeta donde Maven guarda el Javadoc por defecto
           branch: gh-pages # Rama donde se subirá la web de la documentación
