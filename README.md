@@ -100,6 +100,10 @@ El proyecto utiliza **Neon** como proveedor de base de datos PostgreSQL.
 * **Conexión Segura:** Implementada mediante `sslmode=require`.
 * **Esquema:** Los datos se organizan en el esquema `gestor_tareas` (o `public` según configuración).
 
+## 🗄️ Documentación Técnica
+
+https://cristian-dev92.github.io/gestor-tareas-backend
+
 👤 Autor
 
  Cristian Alhambra - Full Stack Developer
