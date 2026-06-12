@@ -23,10 +23,10 @@ public class AuthController {
     private final JwtUtil jwtUtil;
 
     /**
-     * Registra un nuevo usuario en el sistema asignándole un rol por defecto.
+     * Constructor para la inyección de dependencias de los servicios necesarios.
      *
-     * @param userService Objeto {@link User} con los datos del registro (username, password, email).
-     * @return {@link ResponseEntity} con el usuario registrado en el cuerpo de la respuesta y estado 200 OK.
+     * @param userService Servicio para la lógica de negocio de usuarios.
+     * @param jwtUtil Utility para la generación y extracción de tokens JWT.
      */
     public AuthController(UserService userService, JwtUtil jwtUtil) {
         this.userService = userService;

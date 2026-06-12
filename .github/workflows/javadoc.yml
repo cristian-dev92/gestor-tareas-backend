@@ -23,7 +23,7 @@ jobs:
           cache: 'maven'
 
       - name: 📝 Generar Javadoc con Maven
-        run: mvn javadoc:javadoc -Djavadoc.encoding=UTF-8 -Djavadoc.docencoding=UTF-8 -Djavadoc.charset=UTF-8
+        run: mvn javadoc:javadoc -Djavadoc.encoding=UTF-8 -Djavadoc.docencoding=UTF-8 -Djavadoc.charset=UTF-8 -Dmaven.javadoc.failOnWarnings=false
 
       - name: 🚀 Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
