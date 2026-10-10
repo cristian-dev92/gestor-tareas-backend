@@ -117,6 +117,11 @@ public class AuthController {
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
 
+        // 🔒 BLOQUEO DE SEGURIDAD PARA EL PERFIL DEMO
+        if ("demo".equals(username)) {
+            return ResponseEntity.status(403).body("El usuario demo no se puede modificar.");
+        }
+
         User user = userService.findByUsername(username);
 
         if (user == null) {
